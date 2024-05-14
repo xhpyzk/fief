@@ -20,13 +20,13 @@ from fief.paths import STATIC_DIRECTORY
 
 
 def include_routers(router: APIRouter) -> APIRouter:
-    router.include_router(auth_router, include_in_schema=False)
-    router.include_router(register_router, include_in_schema=False)
-    router.include_router(reset_router, include_in_schema=False)
+    router.include_router(auth_router, include_in_schema=True)
+    router.include_router(register_router, include_in_schema=True)
+    router.include_router(reset_router, include_in_schema=True)
     router.include_router(token_router, prefix="/api")
     router.include_router(user_router, prefix="/api")
     router.include_router(well_known_router, prefix="/.well-known")
-    router.include_router(dashboard_router, include_in_schema=False)
+    router.include_router(dashboard_router, include_in_schema=True)
 
     return router
 
