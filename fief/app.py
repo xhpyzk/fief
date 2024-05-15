@@ -64,6 +64,6 @@ async def healthz(session: AsyncSession = Depends(get_main_async_session)):
 
 app.mount("/admin/api", api_app)
 app.mount("/admin", dashboard_app)
-app.mount("/", auth_app)
+app.mount("/user", auth_app)
 
 __all__ = ["app"]

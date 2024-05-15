@@ -121,3 +121,4 @@ node_modules/
 # Generated files
 fief/static/*.js
 fief/static/*.css
+*.whl
