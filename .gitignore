@@ -83,9 +83,6 @@ celerybeat-schedule
 # SageMath parsed files
 *.sage.py
 
-# dotenv
-.env
-
 # virtualenv
 .venv
 venv/
@@ -122,3 +119,6 @@ node_modules/
 fief/static/*.js
 fief/static/*.css
 *.whl
+log.txt 
+*.pid 
+*.rdb
