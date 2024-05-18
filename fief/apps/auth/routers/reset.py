@@ -93,10 +93,10 @@ async def reset_password(
                 fatal=True,
             )
         else:
-            if login_session is not None:
-                redirection = tenant.url_path_for(request, "auth:login")
-                return RedirectResponse(
-                    url=redirection, status_code=status.HTTP_302_FOUND
-                )
+            # if login_session is not None:
+            redirection = tenant.url_path_for(request, "auth:login")
+            return RedirectResponse(
+                url=redirection, status_code=status.HTTP_302_FOUND
+            )
 
     return await form_helper.get_response()
