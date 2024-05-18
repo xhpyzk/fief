@@ -82,9 +82,9 @@ async def get_user_manager(
 
 
 scheme = OAuth2AuthorizationCodeBearer(
-    "https:///www.aiapi.fun/user/authorize",
-    "https:///www.aiapi.fun/user/api/token",
-    "https:///www.aiapi.fun/user/api/token",
+    "https://www.aiapi.fun/user/authorize",
+    "https://www.aiapi.fun/user/api/token",
+    "https://www.aiapi.fun/user/api/token",
     scopes={"openid": "openid"},
     auto_error=False,
 )
