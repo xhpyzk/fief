@@ -33,7 +33,7 @@ else:
     logger.debug("Uvicorn server is running without SSL")
 
 fief = FiefAsync(
-    f"{_scheme}://localhost:{settings.port}",  # Always call Fief on localhost
+    f"{_scheme}://localhost:{settings.port}/user",  # Always call Fief on localhost
     settings.fief_client_id,
     settings.fief_client_secret,
     encryption_key=settings.fief_encryption_key,
