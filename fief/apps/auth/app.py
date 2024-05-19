@@ -1,6 +1,7 @@
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
+from starlette.middleware.sessions import SessionMiddleware
 
 from fief import __version__
 from fief.apps.auth.exception_handlers import exception_handlers
@@ -17,6 +18,7 @@ from fief.middlewares.csrf import CSRFCookieSetterMiddleware
 from fief.middlewares.locale import BabelMiddleware, get_babel_middleware_kwargs
 from fief.middlewares.security_headers import SecurityHeadersMiddleware
 from fief.paths import STATIC_DIRECTORY
+from fief.settings import settings
 
 
 def include_routers(router: APIRouter) -> APIRouter:
@@ -36,6 +38,8 @@ tenant_router = include_routers(APIRouter(prefix="/{tenant_slug}"))
 
 
 app = FastAPI(title="Fief Authentication API", version=__version__)
+
+app.add_middleware(SessionMiddleware, secret_key=settings.secret.get_secret_value())
 app.add_middleware(SecurityHeadersMiddleware)
 app.add_middleware(CSRFCookieSetterMiddleware)
 app.add_middleware(GZipMiddleware)

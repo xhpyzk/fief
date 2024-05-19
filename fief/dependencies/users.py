@@ -56,6 +56,7 @@ from fief.services.acr import ACR
 from fief.services.user_manager import UserManager
 from fief.services.user_roles import UserRolesService
 from fief.tasks import SendTask
+from fief.settings import settings
 
 
 async def get_user_manager(
@@ -82,9 +83,9 @@ async def get_user_manager(
 
 
 scheme = OAuth2AuthorizationCodeBearer(
-    "https://www.aiapi.fun/user/authorize",
-    "https://www.aiapi.fun/user/api/token",
-    "https://www.aiapi.fun/user/api/token",
+    settings.fief_user_authorization_url,
+    settings.fief_user_token_url,
+    settings.fief_user_token_url,
     scopes={"openid": "openid"},
     auto_error=False,
 )

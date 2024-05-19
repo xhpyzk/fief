@@ -17,6 +17,68 @@
 {% endmacro %}
 
 {% block auth_form %}
+  {% if flash_message %}
+    <div id="flash-message" class="flash-message">
+      <span id="close-btn" class="close-btn">&times;</span>
+      <p>{{ flash_message }}</p>
+    </div>
+    <script>
+      // Get the modal
+      var flashMessage = document.getElementById('flash-message');
+
+      // Get the <span> element that closes the modal
+      var closeBtn = document.getElementById('close-btn');
+
+      // When the user clicks on <span> (x), close the modal
+      closeBtn.onclick = function() {
+        flashMessage.style.display = 'none';
+      }
+
+      // Automatically close the modal after 5 seconds
+      setTimeout(function() {
+        flashMessage.style.display = 'none';
+      }, 5000);
+    </script>
+    <style>
+      .flash-message {
+        display: block; 
+        position: fixed; 
+        top: 20px; 
+        right: 20px; 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 15px; 
+        border-radius: 4px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        font-size: 16px;
+        animation: fadeInOut 5s forwards;
+      }
+
+      .close-btn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 20px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .close-btn:hover {
+        color: #bbb;
+      }
+
+      @keyframes fadeInOut {
+        0% {opacity: 0;}
+        10% {opacity: 1;}
+        90% {opacity: 1;}
+        100% {opacity: 0;}
+      }
+    </style>
+  {% endif %}
+
   <form method="POST" action="{{ tenant.url_path_for(request, 'auth:login') }}">
     <div class="space-y-4">
       {{ forms.form_field(form.email) }}

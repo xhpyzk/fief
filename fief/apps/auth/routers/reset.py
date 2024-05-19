@@ -94,6 +94,7 @@ async def reset_password(
             )
         else:
             # if login_session is not None:
+            request.session["flash"] = str(_("Password reset successful."))
             redirection = tenant.url_path_for(request, "auth:login")
             return RedirectResponse(
                 url=redirection, status_code=status.HTTP_302_FOUND

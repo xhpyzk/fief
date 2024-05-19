@@ -151,6 +151,8 @@ async def login(
     if isinstance(login_hint, str):
         initial_form_data = {"email": login_hint}
 
+        # 读取闪现消息
+    flash_message = request.session.pop("flash", None)
     form_helper = FormHelper(
         LoginForm,
         "auth/login.html",
@@ -162,6 +164,7 @@ async def login(
             "oauth_provider_login_hint": login_hint
             if isinstance(login_hint, OAuthProvider)
             else None,
+            "flash_message": flash_message  # 将闪现消息添加到上下文中
         },
     )
     form = await form_helper.get_form()

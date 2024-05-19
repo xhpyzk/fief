@@ -129,6 +129,8 @@ class Settings(BaseSettings):
     fief_main_user_email: EmailStr | None = None
     fief_main_user_password: SecretStr | None = None
     fief_main_admin_api_key: SecretStr | None = None
+    fief_user_authorization_url: str
+    fief_user_token_url: str
 
     fief_admin_session_cookie_name: str = "fief_admin_session"
     fief_admin_session_cookie_domain: str = ""
